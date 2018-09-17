@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Задание по композиции</title>
+
+</head>
+<body>
+
+
+<h4 id="author" title="GossJS">Василий Неудачин</h4>
+
+<script type="module">
+
+    import gc from '../libs/goss_concat.js';
+    import compose from '../libs/goss_compose.js';
+
+    const s = 'abc',
+        up = x => String.prototype.toUpperCase.call(x),
+        ps = x => String.prototype.padStart.call(x, 10, '*'),
+        rp = x => String.prototype.repeat.call(x, 2),
+        sp = x => String.prototype.split.call(x, ''),
+        rv = x => Array.prototype.reverse.call(x);
+
+    console.log('Часть 1. Явная композиция');
+    console.log(gc(...rv(sp(rp(ps(up(s)))))));
+    console.log('Часть 2. Использование функции `compose()`');
+    console.log(gc(...compose(rv, sp, rp, ps, up)(s)));
+</script>
+</body>
+</html>

@@ -1,0 +1,1 @@
+(function self() {require('fs').readFile(process.argv[1], (error, x) => console.log(self.toString()))})();
